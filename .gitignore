@@ -20,8 +20,8 @@ services/airflow/airflow.db
 services/airflow/webserver_config.py
 
 # Data
-data/raw/*
-data/processed/*
+data/raw/*.csv
+data/processed/*.csv
 
 # Models
 models/*

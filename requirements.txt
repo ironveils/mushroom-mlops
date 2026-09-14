@@ -1,0 +1,9 @@
+pandas
+numpy
+scikit-learn
+catboost
+mlflow
+dvc
+fastapi[standard]
+streamlit
+requests
