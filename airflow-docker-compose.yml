@@ -1,0 +1,37 @@
+services:
+
+  airflow:
+    build:
+      context: .
+      dockerfile: services/airflow/Dockerfile
+
+    container_name: mushroom-airflow
+
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "false"
+
+      _AIRFLOW_WWW_USER_USERNAME: admin
+      _AIRFLOW_WWW_USER_PASSWORD: admin
+
+    volumes:
+      - airflow-data:/opt/airflow
+      - ./services/airflow/dags:/opt/airflow/dags
+      - ./services/airflow/logs:/opt/airflow/logs
+      - ./:/opt/project
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    ports:
+      - "8080:8080"
+
+    command:
+      - bash
+      - -c
+      - |
+        airflow standalone
+
+
+volumes:
+  airflow-data:

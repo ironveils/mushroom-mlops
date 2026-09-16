@@ -24,8 +24,6 @@ services/airflow/webserver_config.py
 data/raw/*.csv
 data/processed/*.csv
 
-# Models
-models/*.cbm
 
 # OS
 .DS_Store
