@@ -253,6 +253,11 @@ From the project root:
 docker compose -f airflow-docker-compose.yml up -d --build
 ```
 
+Or:
+```bash
+docker exec mushroom-airflow bash -c "cd /opt/project && docker compose -f code/deployment/docker-compose.yml up -d --build"
+```
+
 Airflow UI:
 
 ```text
