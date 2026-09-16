@@ -12,6 +12,7 @@ venv/
 
 # MLflow
 mlruns/
+mlflow.db
 
 # Airflow
 services/airflow/logs/*
@@ -24,7 +25,7 @@ data/raw/*.csv
 data/processed/*.csv
 
 # Models
-models/*
+models/*.cbm
 
 # OS
 .DS_Store
