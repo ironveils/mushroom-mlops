@@ -4,6 +4,7 @@ scikit-learn
 catboost
 mlflow
 dvc
+dvc-s3
 fastapi[standard]
 streamlit
 requests
