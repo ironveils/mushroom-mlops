@@ -76,12 +76,76 @@ data/processed/
 └── test.csv
 ```
 
-The datasets are versioned with DVC.
+Because the datasets are large, the CSV files are not stored directly in GitHub.
+
+Instead, the datasets are versioned using DVC (Data Version Control).
+
+The Git repository contains the corresponding DVC metadata files:
+
+```text
+data/raw/data.csv.dvc
+data/processed/train.csv.dvc
+data/processed/test.csv.dvc
+```
+
+The actual dataset files are stored in DAGsHub DVC Storage.
+
 The data is checked using:
 
 ```text
 code/datasets/check_data.py
 ```
+
+# 2. Dataset Versioning with DVC
+
+DVC is used to version the large dataset files separately from the Git repository.
+
+The project uses **DAGsHub as the DVC remote storage**.
+
+The architecture is:
+
+```text
+GitHub
+    |
+    +-- source code
+    +-- DVC metadata (.dvc files)
+    +-- configuration
+    |
+    v
+DAGsHub DVC Storage
+    |
+    +-- data.csv
+    +-- train.csv
+    +-- test.csv
+```
+
+The DVC remote is configured in:
+
+```text
+.dvc/config
+```
+
+To check the configured remote:
+
+```bash
+dvc remote list
+```
+
+To upload dataset versions to the remote:
+
+```bash
+dvc push
+```
+
+To download the datasets from the configured remote:
+
+```bash
+dvc pull
+```
+
+The datasets are therefore reproducible without storing the large CSV files directly in GitHub.
+
+
 
 ---
 
